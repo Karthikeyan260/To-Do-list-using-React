@@ -45,14 +45,3 @@ Usage
 Enter a task in the input field and click "Add Task" to add it to the list.
 Click on a task to mark it as completed (it will be crossed out).
 Click the trash icon next to a task to remove it from the list.
-sql
-Copy code
-
-### Steps to Update Your Repository:
-1. Replace the current `README.md` file with the updated version above.
-2. Commit and push the changes:
-
-   ```bash
-   git add README.md
-   git commit -m "Update README to remove Contributing and License sections"
-   git push origin main
