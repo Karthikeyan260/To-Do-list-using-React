@@ -42,3 +42,9 @@
   "author": "",
   "license": "ISC"
 }
+"homepage": "https://Karthikeyan260.github.io/To-Do-list-using-React"
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+
