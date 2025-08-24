@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Signup({ setPage }) {
+function Signup({ setPage, setCurrentUser }) {
   const [formData, setFormData] = useState({ username: '', password: '' });
 
   const handleInputChange = (e) => {
@@ -14,14 +14,29 @@ function Signup({ setPage }) {
       // Check if localStorage is available
       if (typeof window !== "undefined" && window.localStorage) {
         const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Check if user already exists
+        const existingUser = users.find(u => u.username === formData.username);
+        if (existingUser) {
+          alert('Username already exists! Please choose a different username.');
+          return;
+        }
+        
+        const newUser = { 
+          username: formData.username, 
+          password: formData.password,
+          todos: []
+        };
+        
         localStorage.setItem(
           'users',
-          JSON.stringify([...users, { ...formData }])
+          JSON.stringify([...users, newUser])
         );
 
-        // Reset form and redirect to Welcome Page
+        // Reset form and redirect to Login Page
         setFormData({ username: '', password: '' });
-        setPage('welcome'); // Redirect to Welcome Page
+        alert('Account created successfully! Please log in.');
+        setPage('login');
       } else {
         console.error('localStorage is not available');
       }
@@ -31,15 +46,16 @@ function Signup({ setPage }) {
   };
 
   return (
-    <div className="form-container">
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <h1 className="modern-heading">Create Account</h1>
+      <form onSubmit={handleSubmit} className="modern-form">
         <input
           type="text"
           name="username"
           value={formData.username}
           onChange={handleInputChange}
-          placeholder="Enter your username"
+          placeholder="Choose a username"
+          className="modern-input"
           required
         />
         <input
@@ -47,14 +63,19 @@ function Signup({ setPage }) {
           name="password"
           value={formData.password}
           onChange={handleInputChange}
-          placeholder="Enter your password"
+          placeholder="Create a password"
+          className="modern-input"
           required
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="modern-btn modern-btn-primary">
+          Create Account
+        </button>
       </form>
-      <button className="back-button" onClick={() => setPage('welcome')}>
-        Back to Welcome
-      </button>
+      <div className="modern-btn-group">
+        <button className="modern-btn modern-btn-outline" onClick={() => setPage('welcome')}>
+          ← Back to Welcome
+        </button>
+      </div>
     </div>
   );
 }

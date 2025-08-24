@@ -2,15 +2,16 @@ import React from 'react';
 
 function Welcome({ setPage }) {
   return (
-    <div className="welcome">
-      <h1 className="welcome-title">Welcome to Your To-Do App</h1>
-      <p className="welcome-subtitle">Organize your tasks with ease!</p>
-      <div className="welcome-buttons">
-        <button className="welcome-btn" onClick={() => setPage('signup')}>
-          Sign Up
+    <div className="modern-welcome">
+      <div className="modern-welcome-icon">✨</div>
+      <h1 className="modern-title">Welcome to TaskFlow</h1>
+      <p className="modern-subtitle">Organize your tasks with style and efficiency!</p>
+      <div className="modern-btn-group">
+        <button className="modern-btn modern-btn-primary" onClick={() => setPage('signup')}>
+          Get Started
         </button>
-        <button className="welcome-btn" onClick={() => setPage('login')}>
-          Log In
+        <button className="modern-btn modern-btn-outline" onClick={() => setPage('login')}>
+          Sign In
         </button>
       </div>
     </div>
